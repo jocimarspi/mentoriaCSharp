@@ -1,0 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Nota10.Models;
+
+namespace nota10.data
+{
+    public class Nota10Context : DbContext
+    {
+       public Nota10Context(DbContextOptions<Nota10Context> options) : base(options)
+       {
+       } 
+
+       public DbSet<Instituition> Instituitions { get; set; }
+       public DbSet<Student> Students {get; set;}
+    }
+}
