@@ -18,36 +18,43 @@ namespace Nota10.Controllers
             _instituitionService = instituitionService;
         }
 
-        // GET api/values
+        // GET api/instituitions
         [HttpGet]
         public ActionResult<IEnumerable<Instituition>> Get()
         {
             return _instituitionService.All();
-        }
+        } 
 
-        // GET api/values/5
+        // GET api/instituitions/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<IEnumerable<Instituition>> Get(int id)
         {
-            return "value";
-        }
+            var instituition = _instituitionService.FindById(id);
+            var instituitions = new List<Instituition>();
+            instituitions.Add(instituition);
 
-        // POST api/values
+            return instituitions;
+        }
+        
+        // POST api/instituitions
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            var teste = "teste";
         }
 
-        // PUT api/values/5
+        // PUT api/instituitions/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            var teste = "teste";
         }
 
-        // DELETE api/values/5
+        // DELETE api/instituitions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _instituitionService.DeleteById(id);
         }
     }
 }

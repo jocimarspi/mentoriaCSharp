@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Nota10.Services;
 
 namespace Nota10.Models 
 {

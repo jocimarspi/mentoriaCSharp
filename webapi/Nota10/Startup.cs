@@ -10,9 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using nota10.data;
 using Microsoft.EntityFrameworkCore;
 using Nota10.Services;
+using Nota10.Data;
 
 namespace Nota10
 {
@@ -33,14 +33,16 @@ namespace Nota10
             services.AddDbContext<Nota10Context>(options =>
                     options.UseMySql("Server=localhost;User Id=root;Password=root;Database=aconcept"));
 
+            services.AddScoped<SeedingService>();
             services.AddScoped<InstituitionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
             if (env.IsDevelopment())
             {
+                seedingService.Seed();
                 app.UseDeveloperExceptionPage();
             }
             else

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Nota10.Models;
 
-namespace nota10.data
+namespace Nota10.Data
 {
     public class Nota10Context : DbContext
     {
@@ -10,6 +10,7 @@ namespace nota10.data
        } 
 
        public DbSet<Instituition> Instituitions { get; set; }
-       public DbSet<Student> Students {get; set;}
+       public DbSet<ClassRoom> ClassRooms { get; set; }
+       public DbSet<Student> Students {get; set;}       
     }
 }
