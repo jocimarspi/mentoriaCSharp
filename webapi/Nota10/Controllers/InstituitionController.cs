@@ -14,43 +14,49 @@ namespace Nota10.Controllers
     {
         public readonly InstituitionService _instituitionService;
 
-        public InstituitionsController(InstituitionService instituitionService){
+        public InstituitionsController(InstituitionService instituitionService)
+        {
             _instituitionService = instituitionService;
         }
 
-        // GET api/instituitions
         [HttpGet]
         public ActionResult<IEnumerable<Instituition>> Get()
         {
             return _instituitionService.All();
-        } 
+        }
 
-        // GET api/instituitions/5
         [HttpGet("{id}")]
-        public ActionResult<IEnumerable<Instituition>> Get(int id)
+        public ActionResult<Instituition> Get(int id)
         {
             var instituition = _instituitionService.FindById(id);
-            var instituitions = new List<Instituition>();
-            instituitions.Add(instituition);
 
-            return instituitions;
+            if (instituition == null)
+            {
+                return NotFound();
+            }
+
+            return instituition;
         }
-        
-        // POST api/instituitions
+
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Instituition instituition)
         {
-            var teste = "teste";
+            _instituitionService.Add(instituition);
+            return NoContent();
         }
 
-        // PUT api/instituitions/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] Instituition instituition)
         {
-            var teste = "teste";
+            if (id != instituition.Id)
+            {
+                return BadRequest();
+            }
+
+            _instituitionService.Update(instituition);
+            return NoContent();
         }
 
-        // DELETE api/instituitions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

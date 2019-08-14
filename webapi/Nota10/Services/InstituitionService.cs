@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Nota10.Models;
 using System.Linq;
 using Nota10.Data;
-
+using Microsoft.EntityFrameworkCore;
 namespace Nota10.Services
 {
     public class InstituitionService
@@ -40,7 +40,7 @@ namespace Nota10.Services
                 .OrderBy(i => i.Name).ToList();    
         }
 
-        public void Save(Instituition instituition)
+        public void Add(Instituition instituition)
         {
             if (instituition == null) {
                 return;
@@ -49,6 +49,12 @@ namespace Nota10.Services
             _context.Instituitions.Add(instituition);
             _context.SaveChanges();
         } 
+
+        public void Update(Instituition instituition)
+        {
+            _context.Entry(instituition).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
 
         public void DeleteById(int id){
             _context.Remove(new Instituition{Id = id});
