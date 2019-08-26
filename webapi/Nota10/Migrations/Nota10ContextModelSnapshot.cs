@@ -33,7 +33,7 @@ namespace Nota10.Migrations
 
                     b.HasIndex("InstituitionId");
 
-                    b.ToTable("ClassRooms");
+                    b.ToTable("Classrooms");
                 });
 
             modelBuilder.Entity("Nota10.Models.Instituition", b =>
@@ -56,14 +56,14 @@ namespace Nota10.Migrations
 
                     b.Property<DateTime>("BirthDate");
 
-                    b.Property<int?>("ClassRoomId");
+                    b.Property<int?>("ClassroomId");
 
                     b.Property<string>("Name")
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassRoomId");
+                    b.HasIndex("ClassroomId");
 
                     b.ToTable("Students");
                 });
@@ -79,7 +79,7 @@ namespace Nota10.Migrations
                 {
                     b.HasOne("Nota10.Models.ClassRoom", "ClassRoom")
                         .WithMany()
-                        .HasForeignKey("ClassRoomId");
+                        .HasForeignKey("ClassroomId");
                 });
 #pragma warning restore 612, 618
         }

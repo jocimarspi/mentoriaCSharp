@@ -10,7 +10,7 @@ namespace Nota10.Data
        } 
 
        public DbSet<Instituition> Instituitions { get; set; }
-       public DbSet<ClassRoom> ClassRooms { get; set; }
+       public DbSet<Classroom> Classrooms { get; set; }
        public DbSet<Student> Students {get; set;}       
     }
 }

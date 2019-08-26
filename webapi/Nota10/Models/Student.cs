@@ -9,6 +9,7 @@ namespace Nota10.Models
         [MaxLength(100)]
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
-        public virtual ClassRoom ClassRoom { get; set; }                
+        public int ClassroomId { get; set; }
+        public virtual Classroom Classroom { get; set; }                
     }
 }

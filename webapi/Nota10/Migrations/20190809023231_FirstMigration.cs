@@ -22,7 +22,7 @@ namespace Nota10.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ClassRooms",
+                name: "Classrooms",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -33,9 +33,9 @@ namespace Nota10.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClassRooms", x => x.Id);
+                    table.PrimaryKey("PK_Classrooms", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ClassRooms_Instituitions_InstituitionId",
+                        name: "FK_Classrooms_Instituitions_InstituitionId",
                         column: x => x.InstituitionId,
                         principalTable: "Instituitions",
                         principalColumn: "Id",
@@ -50,28 +50,28 @@ namespace Nota10.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 100, nullable: true),
                     BirthDate = table.Column<DateTime>(nullable: false),
-                    ClassRoomId = table.Column<int>(nullable: true)
+                    ClassroomId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Students_ClassRooms_ClassRoomId",
-                        column: x => x.ClassRoomId,
-                        principalTable: "ClassRooms",
+                        name: "FK_Students_Classrooms_ClassroomId",
+                        column: x => x.ClassroomId,
+                        principalTable: "Classrooms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClassRooms_InstituitionId",
-                table: "ClassRooms",
+                name: "IX_Classrooms_InstituitionId",
+                table: "Classrooms",
                 column: "InstituitionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_ClassRoomId",
+                name: "IX_Students_ClassroomId",
                 table: "Students",
-                column: "ClassRoomId");
+                column: "ClassroomId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -80,7 +80,7 @@ namespace Nota10.Migrations
                 name: "Students");
 
             migrationBuilder.DropTable(
-                name: "ClassRooms");
+                name: "Classrooms");
 
             migrationBuilder.DropTable(
                 name: "Instituitions");
